@@ -20,8 +20,8 @@ function Editor() {
           name="Editor"
           editorProps={{ $blockScrolling: true }}
         />
-        ,
       </header>
+      <footer>Made with &hearts; by Tantan.</footer>
     </div>
   );
 }
