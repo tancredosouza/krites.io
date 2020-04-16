@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import AceEditor from "react-ace";
+import ProblemStatement from "./problem_statement.md";
+import ReactMarkdown from "react-markdown";
 
 import "ace-builds/src-noconflict/mode-jsx";
 /*eslint-disable no-alert, no-console */
@@ -30,8 +32,11 @@ languages.forEach((lang) => {
 themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 
 const defaultValue = `#include <iostream>
+
 using namespace std;
+
 int main() {
+  cout << "Hello, world!" << endl;
   return 0;
 }`;
 class App extends Component {
@@ -92,17 +97,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      markdown: "",
       value: defaultValue,
       placeholder: "Placeholder Text",
       theme: "monokai",
       mode: "c_cpp",
-      enableBasicAutocompletion: false,
-      enableLiveAutocompletion: false,
-      fontSize: 14,
+      enableBasicAutocompletion: true,
+      enableLiveAutocompletion: true,
+      fontSize: 12,
       showGutter: true,
       showPrintMargin: true,
       highlightActiveLine: true,
-      enableSnippets: false,
+      enableSnippets: true,
       showLineNumbers: true,
     };
     this.setPlaceholder = this.setPlaceholder.bind(this);
@@ -114,183 +120,20 @@ class App extends Component {
     this.showCode = this.showCode.bind(this);
   }
 
+  componentWillMount() {
+    // Get the contents from the Markdown file and put them in the React state, so we can reference it in render() below.
+    fetch(ProblemStatement)
+      .then((res) => res.text())
+      .then((text) => this.setState({ markdown: text }));
+  }
+
   render() {
+    const { markdown } = this.state;
     return (
       <div className="columns">
         <div className="column">
-          <div className="field">
-            <label>Mode:</label>
-            <p className="control">
-              <span className="select">
-                <select
-                  name="mode"
-                  onChange={this.setMode}
-                  value={this.state.mode}
-                >
-                  {languages.map((lang) => (
-                    <option key={lang} value={lang}>
-                      {lang}
-                    </option>
-                  ))}
-                </select>
-              </span>
-            </p>
-          </div>
-
-          <div className="field">
-            <label>Theme:</label>
-            <p className="control">
-              <span className="select">
-                <select
-                  name="Theme"
-                  onChange={this.setTheme}
-                  value={this.state.theme}
-                >
-                  {themes.map((lang) => (
-                    <option key={lang} value={lang}>
-                      {lang}
-                    </option>
-                  ))}
-                </select>
-              </span>
-            </p>
-          </div>
-
-          <div className="field">
-            <label>Font Size:</label>
-            <p className="control">
-              <span className="select">
-                <select
-                  name="Font Size"
-                  onChange={this.setFontSize}
-                  value={this.state.fontSize}
-                >
-                  {[14, 16, 18, 20, 24, 28, 32, 40].map((lang) => (
-                    <option key={lang} value={lang}>
-                      {lang}
-                    </option>
-                  ))}
-                </select>
-              </span>
-            </p>
-          </div>
-
-          <div className="field">
-            <label>Placeholder:</label>
-            <p className="control">
-              <input
-                className="input"
-                type="text"
-                onChange={this.setPlaceholder}
-                value={this.state.placeholder}
-              />
-            </p>
-          </div>
-
-          <div className="field">
-            <p className="control">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={this.state.enableBasicAutocompletion}
-                  onChange={(e) =>
-                    this.setBoolean(
-                      "enableBasicAutocompletion",
-                      e.target.checked
-                    )
-                  }
-                />
-                Enable Basic Autocomplete
-              </label>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={this.state.enableLiveAutocompletion}
-                  onChange={(e) =>
-                    this.setBoolean(
-                      "enableLiveAutocompletion",
-                      e.target.checked
-                    )
-                  }
-                />
-                Enable Live Autocomplete
-              </label>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={this.state.showGutter}
-                  onChange={(e) =>
-                    this.setBoolean("showGutter", e.target.checked)
-                  }
-                />
-                Show Gutter
-              </label>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={this.state.showPrintMargin}
-                  onChange={(e) =>
-                    this.setBoolean("showPrintMargin", e.target.checked)
-                  }
-                />
-                Show Print Margin
-              </label>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={this.state.highlightActiveLine}
-                  onChange={(e) =>
-                    this.setBoolean("highlightActiveLine", e.target.checked)
-                  }
-                />
-                Highlight Active Line
-              </label>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={this.state.enableSnippets}
-                  onChange={(e) =>
-                    this.setBoolean("enableSnippets", e.target.checked)
-                  }
-                />
-                Enable Snippets
-              </label>
-            </p>
-          </div>
-          <div className="field">
-            <p className="control">
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  checked={this.state.showLineNumbers}
-                  onChange={(e) =>
-                    this.setBoolean("showLineNumbers", e.target.checked)
-                  }
-                />
-                Show Line Numbers
-              </label>
-            </p>
-          </div>
+          <h2>Problem Statement</h2>
+          <ReactMarkdown source={markdown} />
         </div>
         <div className="examples column">
           <h2>Editor</h2>
@@ -318,7 +161,7 @@ class App extends Component {
               tabSize: 2,
             }}
           />
-          <button onClick={this.showCode}>Click me!</button>
+          <button onClick={this.showCode}>Submit answer!</button>
         </div>
       </div>
     );
