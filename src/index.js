@@ -161,7 +161,25 @@ class App extends Component {
               tabSize: 2,
             }}
           />
-          <button onClick={this.showCode}>Submit answer!</button>
+          <div className="field">
+            <label>Theme:</label>
+            <p className="control">
+              <span className="select">
+                <select
+                  name="Theme"
+                  onChange={this.setTheme}
+                  value={this.state.theme}
+                >
+                  {themes.map((lang) => (
+                    <option key={lang} value={lang}>
+                      {lang}
+                    </option>
+                  ))}
+                </select>
+              </span>
+            </p>
+            <button onClick={this.showCode}>Submit answer!</button>
+          </div>
         </div>
       </div>
     );

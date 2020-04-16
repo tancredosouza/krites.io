@@ -1,0 +1,3 @@
+[submodule "krites.io-codeProcessor"]
+	path = krites.io-codeProcessor
+	url = https://github.com/tancredosouza/krites.io-codeProcessor
