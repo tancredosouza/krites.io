@@ -90,7 +90,8 @@ class App extends Component {
       fontSize: parseInt(e.target.value, 10),
     });
   }
-  showCode() {
+  sendCode() {
+    // should send code to code processor
     console.log(this.state.value);
   }
 
@@ -117,7 +118,7 @@ class App extends Component {
     this.onChange = this.onChange.bind(this);
     this.setFontSize = this.setFontSize.bind(this);
     this.setBoolean = this.setBoolean.bind(this);
-    this.showCode = this.showCode.bind(this);
+    this.sendCode = this.sendCode.bind(this);
   }
 
   componentWillMount() {
@@ -178,7 +179,7 @@ class App extends Component {
                 </select>
               </span>
             </p>
-            <button onClick={this.showCode}>Submit answer!</button>
+            <button onClick={this.sendCode}>Submit answer!</button>
           </div>
         </div>
       </div>
