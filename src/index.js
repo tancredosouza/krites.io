@@ -90,9 +90,19 @@ class App extends Component {
       fontSize: parseInt(e.target.value, 10),
     });
   }
-  sendCode() {
+  async sendCode() {
     // should send code to code processor
     console.log(this.state.value);
+    let response = await fetch("http://localhost:8080", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "API-Key": "secret",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({ code: this.state.value }),
+    });
   }
 
   constructor(props) {
