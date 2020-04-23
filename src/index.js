@@ -41,28 +41,28 @@ int main() {
 }`;
 class App extends Component {
   onLoad() {
-    console.log("i've loaded");
+    //console.log("i've loaded");
   }
   onChange(newValue) {
-    console.log("change", newValue);
+    //console.log("change", newValue);
     this.setState({
       value: newValue,
     });
-    console.log("NEW_STATE", this.state.value);
+    //console.log("NEW_STATE", this.state.value);
   }
 
   onSelectionChange(newValue, event) {
-    console.log("select-change", newValue);
-    console.log("select-change-event", event);
+    //console.log("select-change", newValue);
+    //console.log("select-change-event", event);
   }
 
   onCursorChange(newValue, event) {
-    console.log("cursor-change", newValue);
-    console.log("cursor-change-event", event);
+    //console.log("cursor-change", newValue);
+    //console.log("cursor-change-event", event);
   }
 
   onValidate(annotations) {
-    console.log("onValidate", annotations);
+    //console.log("onValidate", annotations);
   }
 
   setPlaceholder(e) {
@@ -92,8 +92,8 @@ class App extends Component {
   }
   async sendCode() {
     // should send code to code processor
-    console.log(this.state.value);
-    let response = await fetch("http://localhost:8080", {
+    //console.log(this.state.value);
+    fetch("http://localhost:8080", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,8 +101,10 @@ class App extends Component {
         "Access-Control-Allow-Headers": "*",
         "Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify({ code: this.state.value }),
-    });
+      body: this.state.value,
+    })
+      .then((response) => response.text())
+      .then((data) => console.log(data));
   }
 
   constructor(props) {
