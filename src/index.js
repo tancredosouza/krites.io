@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import AceEditor from "react-ace";
 import ProblemStatement from "./problem_statement.md";
 import ReactMarkdown from "react-markdown";
+import SubmissionResult from "./SubmissionResult";
 
 import "ace-builds/src-noconflict/mode-jsx";
 /*eslint-disable no-alert, no-console */
@@ -49,6 +50,12 @@ class App extends Component {
       value: newValue,
     });
     //console.log("NEW_STATE", this.state.value);
+  }
+
+  togglePopup() {
+    this.setState({
+      showPopup: !this.state.showPopup,
+    });
   }
 
   onSelectionChange(newValue, event) {
@@ -104,7 +111,9 @@ class App extends Component {
       body: this.state.value,
     })
       .then((response) => response.text())
-      .then((data) => console.log(data));
+      .then((data) => this.setState({ submissionResult: data }))
+      .catch(console.log);
+    this.togglePopup();
   }
 
   constructor(props) {
@@ -123,6 +132,8 @@ class App extends Component {
       highlightActiveLine: true,
       enableSnippets: true,
       showLineNumbers: true,
+      submissionResult: "",
+      showPopup: false,
     };
     this.setPlaceholder = this.setPlaceholder.bind(this);
     this.setTheme = this.setTheme.bind(this);
@@ -194,6 +205,12 @@ class App extends Component {
             <button onClick={this.sendCode}>Submit answer!</button>
           </div>
         </div>
+        {this.state.showPopup ? (
+          <SubmissionResult
+            submissionResult={this.state.submissionResult}
+            closePopup={this.togglePopup.bind(this)}
+          />
+        ) : null}
       </div>
     );
   }

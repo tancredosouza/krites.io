@@ -1,10 +1,10 @@
 # Fibonnacci numbers
 
-Given `N` numbers, return their corresponding fibonnacci number.
+Given `N` numbers, return the correspondent fibonnacci number.
 
 ## Definition
 
-The Fibonnacci number is defined as so:
+The Fibonnacci sequence is defined as follows
 
 ```
 - fib(0) = 0
