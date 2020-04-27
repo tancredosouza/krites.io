@@ -1,10 +1,8 @@
-# Fibonnacci numbers
+### Fibonnacci Sequence
 
-Given `N` numbers, return the correspondent fibonnacci number.
+#### Definition
 
-## Definition
-
-The Fibonnacci sequence is defined as follows
+The Fibonnacci sequence is defined as follows:
 
 ```
 - fib(0) = 0
@@ -12,15 +10,18 @@ The Fibonnacci sequence is defined as follows
 - fib(n) = fib(n - 1) + fib(n - 2), for n > 1
 ```
 
-You're given an integer `N` representing the number of fibonnacci numbers to be calculated.
-Then, `N` lines follow.
-For each number `i`, calculate the `i`-th Fibonnacci number.
-
-For each number, your output should be the `i`-th Fibonnacci number followed by a line break.
-
-## Example
-
 ##### Input
+
+You are given a non-negative integer `N`, which defines the number of test cases.
+For each test case, consisting of a non-negative integer `i`, you must calculate `fib(i)`.
+
+##### Output
+
+Every `i`-th line should contain the `i`-th Fibonnacci number followed by a line break.
+
+#### Example
+
+###### Input
 
 ```
 5
@@ -31,7 +32,7 @@ For each number, your output should be the `i`-th Fibonnacci number followed by 
 23
 ```
 
-##### Output
+###### Output
 
 ```
 55
