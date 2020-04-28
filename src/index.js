@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Demo from "./demo";
+import FunctionalApp from "./functional_app";
 
-ReactDOM.render(<Demo />, document.querySelector("#root"));
+ReactDOM.render(<FunctionalApp />, document.querySelector("#root"));
