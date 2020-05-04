@@ -1,7 +1,6 @@
 import React, { Component, useState } from "react";
 import { render } from "react-dom";
 import AceEditor from "react-ace";
-import ProblemStatement from "./problem_statement.md";
 import ReactMarkdown from "react-markdown";
 import SubmissionResult from "./SubmissionResult";
 import Paper from "@material-ui/core/Paper";
@@ -9,12 +8,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-
+import text from "./problem_statement";
+import Typography from "@material-ui/core/Typography";
 import "ace-builds/src-noconflict/mode-jsx";
 /*eslint-disable no-alert, no-console */
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
-
+import * as renderers from "react-markdown-github-renderers";
 const languages = ["c_cpp"];
 
 const themes = [
@@ -74,23 +74,21 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     maxWidth: 160,
   },
+  problem: {
+    width: "100%",
+  },
 }));
 
-export default function FunctionalApp() {
+const FunctionalApp = () => {
   const classes = useStyles();
   const [value, setValue] = useState(defaultValue);
   const [placeholder, setPlaceholder] = useState("Placeholder Text");
-  const [theme, setTheme] = useState("monokai");
+  const [theme, setTheme] = useState("github");
   const [mode, setMode] = useState("c_cpp");
-  const [enableBasicAutocompletion, setBasicAutocomplete] = useState(true);
-  const [enableLiveAutocompletion, setLiveAutocomplete] = useState(true);
   const [fontSize, setFontSize] = useState(12);
   const [showGutter, setShowGutter] = useState(true);
   const [showPrintMargin, setShowPrintMargin] = useState(true);
   const [highlightActiveLine, sethighlightActiveLine] = useState(true);
-  const [enableSnippets, setenableSnippets] = useState(true);
-  const [showLineNumbers, setshowLineNumbers] = useState(true);
-  const [submissionResult, setsubmissionResult] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [markdown, setMarkdown] = useState("# Hello");
 
@@ -135,9 +133,17 @@ export default function FunctionalApp() {
       <div className={classes.root}>
         <Grid container direction="row" spacing={1} justify="center">
           <Grid item xs={12} sm={6}>
-            <Paper className={classes.paper}>
-              <ReactMarkdown source={markdown} />
-            </Paper>
+            <div className={classes.problem}>
+              <Paper className={classes.paper}>
+                <Typography variant="body1">
+                  <ReactMarkdown
+                    source={text}
+                    escapeHtml={false}
+                    renderers={renderers}
+                  />
+                </Typography>
+              </Paper>
+            </div>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}>
@@ -158,26 +164,14 @@ export default function FunctionalApp() {
                 highlightActiveLine={highlightActiveLine}
                 setOptions={{
                   useWorker: false,
-                  enableBasicAutocompletion: enableBasicAutocompletion,
-                  enableLiveAutocompletion: enableLiveAutocompletion,
-                  enableSnippets: enableSnippets,
-                  showLineNumbers: showLineNumbers,
-                  tabSize: 2,
+                  enableBasicAutocompletion: true,
+                  enableLiveAutocompletion: true,
+                  enableSnippets: true,
+                  showLineNumbers: true,
+                  tabSize: 4,
                 }}
               />
               <div className="field">
-                <label>Theme:</label>
-                <p className="control">
-                  <span className="select">
-                    <select name="Theme" value={theme}>
-                      {themes.map((lang) => (
-                        <option key={lang} value={lang}>
-                          {lang}
-                        </option>
-                      ))}
-                    </select>
-                  </span>
-                </p>
                 <button>Submit answer!</button>
               </div>
             </Paper>
@@ -186,200 +180,6 @@ export default function FunctionalApp() {
       </div>
     </div>
   );
-}
+};
 
-//export default FunctionalApp();
-
-/*
-class App extends Component {
-  onLoad() {
-    //console.log("i've loaded");
-  }
-  onChange(newValue) {
-    //console.log("change", newValue);
-    this.setState({
-      value: newValue,
-    });
-    //console.log("NEW_STATE", this.state.value);
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup,
-    });
-  }
-
-  onSelectionChange(newValue, event) {
-    //console.log("select-change", newValue);
-    //console.log("select-change-event", event);
-  }
-
-  onCursorChange(newValue, event) {
-    //console.log("cursor-change", newValue);
-    //console.log("cursor-change-event", event);
-  }
-
-  onValidate(annotations) {
-    //console.log("onValidate", annotations);
-  }
-
-  setPlaceholder(e) {
-    this.setState({
-      placeholder: e.target.value,
-    });
-  }
-  setTheme(e) {
-    this.setState({
-      theme: e.target.value,
-    });
-  }
-  setMode(e) {
-    this.setState({
-      mode: e.target.value,
-    });
-  }
-  setBoolean(name, value) {
-    this.setState({
-      [name]: value,
-    });
-  }
-  setFontSize(e) {
-    this.setState({
-      fontSize: parseInt(e.target.value, 10),
-    });
-  }
-  async sendCode() {
-    // should send code to code processor
-    //console.log(this.state.value);
-    fetch("http://localhost:8080", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "API-Key": "secret",
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: this.state.value,
-    })
-      .then((response) => response.text())
-      .then((data) => this.setState({ submissionResult: data }))
-      .catch(console.log);
-    this.togglePopup();
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      markdown: "",
-      value: defaultValue,
-      placeholder: "Placeholder Text",
-      theme: "monokai",
-      mode: "c_cpp",
-      enableBasicAutocompletion: true,
-      enableLiveAutocompletion: true,
-      fontSize: 12,
-      showGutter: true,
-      showPrintMargin: true,
-      highlightActiveLine: true,
-      enableSnippets: true,
-      showLineNumbers: true,
-      submissionResult: "",
-      showPopup: false,
-    };
-    this.setPlaceholder = this.setPlaceholder.bind(this);
-    this.setTheme = this.setTheme.bind(this);
-    this.setMode = this.setMode.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.setFontSize = this.setFontSize.bind(this);
-    this.setBoolean = this.setBoolean.bind(this);
-    this.sendCode = this.sendCode.bind(this);
-  }
-
-  componentWillMount() {
-    // Get the contents from the Markdown file and put them in the React state, so we can reference it in render() below.
-    fetch(ProblemStatement)
-      .then((res) => res.text())
-      .then((text) => this.setState({ markdown: text }));
-  }
-
-  render() {
-    const classes = useStyles();
-    const { markdown } = this.state;
-    return (
-      <div>
-        <div>
-          <AppBar color="inherit" position="static">
-            <Toolbar>
-              <img
-                src={require("./logo.png")}
-                alt="logo"
-                className={classes.logo}
-              />
-            </Toolbar>
-          </AppBar>
-        </div>
-        <div className={classes.root}>
-          <Grid container direction="row" spacing={1} justify="center">
-            <Grid item xs={12} sm={6}>
-              <Paper className={classes.paper}>
-                <ReactMarkdown source={markdown} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Paper className={classes.paper}>
-                <AceEditor
-                  placeholder={this.state.placeholder}
-                  mode={this.state.mode}
-                  theme={this.state.theme}
-                  name="blah2"
-                  onLoad={this.onLoad}
-                  onChange={this.onChange}
-                  onSelectionChange={this.onSelectionChange}
-                  onCursorChange={this.onCursorChange}
-                  onValidate={this.onValidate}
-                  value={this.state.value}
-                  fontSize={this.state.fontSize}
-                  showPrintMargin={this.state.showPrintMargin}
-                  showGutter={this.state.showGutter}
-                  highlightActiveLine={this.state.highlightActiveLine}
-                  setOptions={{
-                    useWorker: false,
-                    enableBasicAutocompletion: this.state
-                      .enableBasicAutocompletion,
-                    enableLiveAutocompletion: this.state
-                      .enableLiveAutocompletion,
-                    enableSnippets: this.state.enableSnippets,
-                    showLineNumbers: this.state.showLineNumbers,
-                    tabSize: 2,
-                  }}
-                />
-                <div className="field">
-                  <label>Theme:</label>
-                  <p className="control">
-                    <span className="select">
-                      <select
-                        name="Theme"
-                        onChange={this.setTheme}
-                        value={this.state.theme}
-                      >
-                        {themes.map((lang) => (
-                          <option key={lang} value={lang}>
-                            {lang}
-                          </option>
-                        ))}
-                      </select>
-                    </span>
-                  </p>
-                  <button onClick={this.sendCode}>Submit answer!</button>
-                </div>
-              </Paper>
-            </Grid>
-          </Grid>
-        </div>
-      </div>
-    );
-  }
-}
-
-render(<App />, document.getElementById("root"));
-*/
+export default FunctionalApp;
