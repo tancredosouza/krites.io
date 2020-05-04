@@ -12,6 +12,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap");
+h1,
+h2 {
+  font-family: "Baloo Tamma 2", cursive;
+}
 
 .popup {
   position: fixed;
