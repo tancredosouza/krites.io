@@ -98,6 +98,7 @@ const FunctionalApp = () => {
   const [mode, setMode] = useState("c_cpp");
   const [fontSize, setFontSize] = useState(12);
   const [showGutter, setShowGutter] = useState(true);
+  const [submissionResult, setSubmissionResult] = useState("");
   const [showPrintMargin, setShowPrintMargin] = useState(true);
   const [highlightActiveLine, sethighlightActiveLine] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
@@ -120,10 +121,10 @@ const FunctionalApp = () => {
         "Access-Control-Allow-Headers": "*",
         "Access-Control-Allow-Origin": "*",
       },
-      body: this.state.value,
+      body: value,
     })
       .then((response) => response.text())
-      .then((data) => this.setState({ submissionResult: data }))
+      .then((data) => setSubmissionResult(data))
       .catch(console.log);
     togglePopup();
   };
@@ -184,7 +185,11 @@ const FunctionalApp = () => {
                   }}
                 />
                 <div className={classes.button}>
-                  <Button variant="contained" color="inherit">
+                  <Button
+                    variant="contained"
+                    color="inherit"
+                    onClick={showCode}
+                  >
                     Submit Code
                   </Button>
                 </div>
