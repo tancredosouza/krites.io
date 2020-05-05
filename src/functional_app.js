@@ -1,8 +1,6 @@
-import React, { Component, useState } from "react";
-import { render } from "react-dom";
+import React, { useState } from "react";
 import AceEditor from "react-ace";
 import ReactMarkdown from "react-markdown";
-import SubmissionResult from "./SubmissionResult";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -14,7 +12,6 @@ import "ace-builds/src-noconflict/mode-jsx";
 /*eslint-disable no-alert, no-console */
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
-import * as renderers from "react-markdown-github-renderers";
 import Button from "@material-ui/core/Button";
 
 const languages = ["c_cpp"];
@@ -93,23 +90,18 @@ const useStyles = makeStyles((theme) => ({
 const FunctionalApp = () => {
   const classes = useStyles();
   const [value, setValue] = useState(defaultValue);
-  const [placeholder, setPlaceholder] = useState("Placeholder Text");
-  const [theme, setTheme] = useState("xcode");
-  const [mode, setMode] = useState("c_cpp");
-  const [fontSize, setFontSize] = useState(12);
-  const [showGutter, setShowGutter] = useState(true);
-  const [submissionResult, setSubmissionResult] = useState("");
-  const [showPrintMargin, setShowPrintMargin] = useState(true);
-  const [highlightActiveLine, sethighlightActiveLine] = useState(true);
+  const [placeholder] = useState("Placeholder Text");
+  const [theme] = useState("xcode");
+  const [mode] = useState("c_cpp");
+  const [fontSize] = useState(12);
+  const [showGutter] = useState(true);
+  const [, setSubmissionResult] = useState("");
+  const [showPrintMargin] = useState(true);
+  const [highlightActiveLine] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
-  const [markdown, setMarkdown] = useState("# Hello");
 
   const onChange = (newValue) => {
     setValue(newValue);
-  };
-
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
   };
 
   const showCode = () => {
