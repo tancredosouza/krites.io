@@ -124,9 +124,12 @@ const FunctionalApp = () => {
       body: value,
     })
       .then((response) => response.text())
-      .then((data) => setSubmissionResult(data))
+      .then((data) => {
+        console.log(data);
+        setSubmissionResult(data);
+      })
       .catch(console.log);
-    togglePopup();
+    //togglePopup();
   };
 
   return (
@@ -143,15 +146,15 @@ const FunctionalApp = () => {
         </AppBar>
       </div>
       <div className={classes.root}>
-        <Grid container direction="row" spacing={1} justify="center">
+        <Grid container direction="row" spacing={1}>
           <Grid item xs={12} sm={6}>
-            <div className={classes.problem}>
+            <div>
               <Paper className={classes.paper}>
-                <Typography variant="body1">
+                <Typography component={"span"}>
                   <ReactMarkdown
                     source={text}
                     escapeHtml={false}
-                    renderers={renderers}
+                    renderers={{ paragraph: (props) => <div {...props} /> }}
                   />
                 </Typography>
               </Paper>
