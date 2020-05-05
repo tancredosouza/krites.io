@@ -15,6 +15,8 @@ import "ace-builds/src-noconflict/mode-jsx";
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import * as renderers from "react-markdown-github-renderers";
+import Button from "@material-ui/core/Button";
+
 const languages = ["c_cpp"];
 
 const themes = [
@@ -51,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     overflow: "hidden",
     padding: theme.spacing(1, 1),
+    width: "100%",
   },
   media: {
     height: 0,
@@ -59,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
+    justifyContent: "center",
   },
   bullet: {
     display: "inline-block",
@@ -76,6 +80,12 @@ const useStyles = makeStyles((theme) => ({
   },
   problem: {
     width: "100%",
+  },
+  editor: {
+    height: "100%",
+  },
+  marginAutoItem: {
+    margin: "auto",
   },
 }));
 
@@ -146,35 +156,39 @@ const FunctionalApp = () => {
             </div>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper className={classes.paper}>
-              <AceEditor
-                placeholder={placeholder}
-                mode={mode}
-                theme={theme}
-                name="blah2"
-                onChange={onChange}
-                //onLoad={onLoad}
-                //onSelectionChange={onSelectionChange}
-                //onCursorChange={onCursorChange}
-                //onValidate={onValidate}
-                value={value}
-                fontSize={fontSize}
-                showPrintMargin={showPrintMargin}
-                showGutter={showGutter}
-                highlightActiveLine={highlightActiveLine}
-                setOptions={{
-                  useWorker: false,
-                  enableBasicAutocompletion: true,
-                  enableLiveAutocompletion: true,
-                  enableSnippets: true,
-                  showLineNumbers: true,
-                  tabSize: 4,
-                }}
-              />
-              <div className="field">
-                <button>Submit answer!</button>
+            <div className={classes.editor}>
+              <Paper className={classes.paper}>
+                <AceEditor
+                  placeholder={placeholder}
+                  mode={mode}
+                  theme={theme}
+                  name="blah2"
+                  onChange={onChange}
+                  //onLoad={onLoad}
+                  //onSelectionChange={onSelectionChange}
+                  //onCursorChange={onCursorChange}
+                  //onValidate={onValidate}
+                  value={value}
+                  fontSize={fontSize}
+                  showPrintMargin={showPrintMargin}
+                  showGutter={showGutter}
+                  highlightActiveLine={highlightActiveLine}
+                  setOptions={{
+                    useWorker: false,
+                    enableBasicAutocompletion: true,
+                    enableLiveAutocompletion: true,
+                    enableSnippets: true,
+                    showLineNumbers: true,
+                    tabSize: 4,
+                  }}
+                />
+              </Paper>
+              <div style={{ justifyContent: "center" }}>
+                <Button variant="contained" color="inherit">
+                  Submit Code
+                </Button>
               </div>
-            </Paper>
+            </div>
           </Grid>
         </Grid>
       </div>
