@@ -40,6 +40,7 @@ const Popup = (props) => {
     <div className={classes.popup}>
       <div className={classes.popup_inner}>
         <h1>{props.text}</h1>
+        <button onClick={props.closeFunction}>close me</button>
       </div>
     </div>
   );
