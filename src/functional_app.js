@@ -95,7 +95,7 @@ const FunctionalApp = () => {
   const [mode] = useState("c_cpp");
   const [fontSize] = useState(12);
   const [showGutter] = useState(true);
-  const [, setSubmissionResult] = useState("");
+  const [submissionResult, setSubmissionResult] = useState("");
   const [showPrintMargin] = useState(true);
   const [highlightActiveLine] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
@@ -120,8 +120,11 @@ const FunctionalApp = () => {
         console.log(data);
         setSubmissionResult(data);
       })
-      .then(setShowPopup(true))
+      .then(() => setShowPopup(true))
       .catch(console.log);
+  };
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
 
   return (
@@ -191,7 +194,9 @@ const FunctionalApp = () => {
               </Paper>
             </div>
           </Grid>
-          {showPopup ? <Popup text="yay" /> : null}
+          {showPopup ? (
+            <Popup text={submissionResult} closeFunction={togglePopup} />
+          ) : null}
         </Grid>
       </div>
     </div>
