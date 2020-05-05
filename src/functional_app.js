@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     overflow: "hidden",
     padding: theme.spacing(1, 1),
-    width: "100%",
   },
   media: {
     height: 0,
@@ -62,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
-    justifyContent: "center",
   },
   bullet: {
     display: "inline-block",
@@ -82,10 +80,13 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   editor: {
-    height: "100%",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
   },
-  marginAutoItem: {
-    margin: "auto",
+  button: {
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
@@ -93,7 +94,7 @@ const FunctionalApp = () => {
   const classes = useStyles();
   const [value, setValue] = useState(defaultValue);
   const [placeholder, setPlaceholder] = useState("Placeholder Text");
-  const [theme, setTheme] = useState("github");
+  const [theme, setTheme] = useState("xcode");
   const [mode, setMode] = useState("c_cpp");
   const [fontSize, setFontSize] = useState(12);
   const [showGutter, setShowGutter] = useState(true);
@@ -182,12 +183,12 @@ const FunctionalApp = () => {
                     tabSize: 4,
                   }}
                 />
+                <div className={classes.button}>
+                  <Button variant="contained" color="inherit">
+                    Submit Code
+                  </Button>
+                </div>
               </Paper>
-              <div style={{ justifyContent: "center" }}>
-                <Button variant="contained" color="inherit">
-                  Submit Code
-                </Button>
-              </div>
             </div>
           </Grid>
         </Grid>
