@@ -13,7 +13,7 @@ import "ace-builds/src-noconflict/mode-jsx";
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import Button from "@material-ui/core/Button";
-
+import Popup from "./Popup";
 const languages = ["c_cpp"];
 
 const themes = [
@@ -120,8 +120,8 @@ const FunctionalApp = () => {
         console.log(data);
         setSubmissionResult(data);
       })
+      .then(setShowPopup(true))
       .catch(console.log);
-    //togglePopup();
   };
 
   return (
@@ -191,6 +191,7 @@ const FunctionalApp = () => {
               </Paper>
             </div>
           </Grid>
+          {showPopup ? <Popup text="yay" /> : null}
         </Grid>
       </div>
     </div>
