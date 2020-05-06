@@ -48,8 +48,13 @@ int main() {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    height: "100%",
+  },
+  innerRoot: {
+    flexGrow: 1,
     overflow: "hidden",
-    padding: theme.spacing(1, 1),
+    padding: theme.spacing(10, 1),
+    height: "100%",
   },
   media: {
     height: 0,
@@ -57,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(2),
+    padding: theme.spacing(1, 2),
   },
   bullet: {
     display: "inline-block",
@@ -74,11 +79,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 160,
   },
   problem: {
+    height: "100%",
     width: "100%",
   },
   editor: {
     width: "100%",
+    height: "100%",
     display: "flex",
+    padding: theme.spacing(0, 2),
     justifyContent: "center",
   },
   button: {
@@ -94,7 +102,6 @@ const FunctionalApp = () => {
   const [theme] = useState("xcode");
   const [mode] = useState("c_cpp");
   const [fontSize] = useState(12);
-  const [showGutter] = useState(true);
   const [submissionResult, setSubmissionResult] = useState("");
   const [showPrintMargin] = useState(true);
   const [highlightActiveLine] = useState(true);
@@ -123,6 +130,7 @@ const FunctionalApp = () => {
       .then(() => setShowPopup(true))
       .catch(console.log);
   };
+
   const togglePopup = () => {
     setShowPopup(!showPopup);
   };
@@ -141,63 +149,61 @@ const FunctionalApp = () => {
         </AppBar>
       </div>
       <div className={classes.root}>
-        <Grid container direction="row" spacing={1}>
-          <Grid item xs={12} sm={6}>
-            <div>
-              <Paper className={classes.paper}>
-                <Typography component={"span"}>
-                  <ReactMarkdown
-                    source={text}
-                    escapeHtml={false}
-                    renderers={{ paragraph: (props) => <div {...props} /> }}
+        <div className={classes.innerRoot}>
+          <Grid container direction="row" spacing={1}>
+            <Grid item xs={12} sm={6}>
+              <div className={classes.editor}>
+                <Paper className={classes.paper}>
+                  <Typography component={"span"}>
+                    <ReactMarkdown
+                      source={text}
+                      escapeHtml={false}
+                      renderers={{ paragraph: (props) => <div {...props} /> }}
+                    />
+                  </Typography>
+                </Paper>
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <div className={classes.editor}>
+                <Paper className={classes.paper}>
+                  <AceEditor
+                    placeholder={placeholder}
+                    mode={mode}
+                    theme={theme}
+                    name="blah2"
+                    onChange={onChange}
+                    value={value}
+                    height={"95%"}
+                    fontSize={fontSize}
+                    showPrintMargin={showPrintMargin}
+                    showGutter={false}
+                    highlightActiveLine={highlightActiveLine}
+                    setOptions={{
+                      useWorker: false,
+                      enableBasicAutocompletion: true,
+                      enableLiveAutocompletion: true,
+                      enableSnippets: false,
+                      tabSize: 4,
+                    }}
                   />
-                </Typography>
-              </Paper>
-            </div>
+                  <div className={classes.button}>
+                    <Button
+                      variant="contained"
+                      color="inherit"
+                      onClick={showCode}
+                    >
+                      Submit Code
+                    </Button>
+                  </div>
+                </Paper>
+              </div>
+            </Grid>
+            {showPopup ? (
+              <Popup text={submissionResult} closeFunction={togglePopup} />
+            ) : null}
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <div className={classes.editor}>
-              <Paper className={classes.paper}>
-                <AceEditor
-                  placeholder={placeholder}
-                  mode={mode}
-                  theme={theme}
-                  name="blah2"
-                  onChange={onChange}
-                  //onLoad={onLoad}
-                  //onSelectionChange={onSelectionChange}
-                  //onCursorChange={onCursorChange}
-                  //onValidate={onValidate}
-                  value={value}
-                  fontSize={fontSize}
-                  showPrintMargin={showPrintMargin}
-                  showGutter={showGutter}
-                  highlightActiveLine={highlightActiveLine}
-                  setOptions={{
-                    useWorker: false,
-                    enableBasicAutocompletion: true,
-                    enableLiveAutocompletion: true,
-                    enableSnippets: true,
-                    showLineNumbers: true,
-                    tabSize: 4,
-                  }}
-                />
-                <div className={classes.button}>
-                  <Button
-                    variant="contained"
-                    color="inherit"
-                    onClick={showCode}
-                  >
-                    Submit Code
-                  </Button>
-                </div>
-              </Paper>
-            </div>
-          </Grid>
-          {showPopup ? (
-            <Popup text={submissionResult} closeFunction={togglePopup} />
-          ) : null}
-        </Grid>
+        </div>
       </div>
     </div>
   );
