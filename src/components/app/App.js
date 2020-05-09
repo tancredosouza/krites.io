@@ -6,14 +6,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import text from "./problem_statement";
+import text from "../statement/problem_statement";
 import Typography from "@material-ui/core/Typography";
 import "ace-builds/src-noconflict/mode-jsx";
 /*eslint-disable no-alert, no-console */
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import Button from "@material-ui/core/Button";
-import Popup from "./Popup";
+import Popup from "../message/Popup";
 const languages = ["c_cpp"];
 
 const themes = [
