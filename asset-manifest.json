@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/krites_io/static/css/main.5f361e03.chunk.css",
+    "main.js": "/krites_io/static/js/main.a374231d.chunk.js",
+    "main.js.map": "/krites_io/static/js/main.a374231d.chunk.js.map",
+    "runtime-main.js": "/krites_io/static/js/runtime-main.aa0584b7.js",
+    "runtime-main.js.map": "/krites_io/static/js/runtime-main.aa0584b7.js.map",
+    "static/js/2.2f5ef2c2.chunk.js": "/krites_io/static/js/2.2f5ef2c2.chunk.js",
+    "static/js/2.2f5ef2c2.chunk.js.map": "/krites_io/static/js/2.2f5ef2c2.chunk.js.map",
+    "index.html": "/krites_io/index.html",
+    "precache-manifest.730c4ca327ceb03f596174f2cdc50a9d.js": "/krites_io/precache-manifest.730c4ca327ceb03f596174f2cdc50a9d.js",
+    "service-worker.js": "/krites_io/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/krites_io/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.2f5ef2c2.chunk.js.LICENSE.txt": "/krites_io/static/js/2.2f5ef2c2.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/krites_io/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aa0584b7.js",
+    "static/js/2.2f5ef2c2.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.a374231d.chunk.js"
+  ]
+}
