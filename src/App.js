@@ -15,7 +15,7 @@ import "ace-builds/src-min-noconflict/ext-language_tools";
 import Button from "@material-ui/core/Button";
 import Popup from "./Popup";
 
-const languages = ["c"];
+const languages = ["c_cpp"];
 
 const themes = [
   "monokai",
@@ -99,7 +99,7 @@ const App = () => {
   const [value, setValue] = useState(defaultValue);
   const [placeholder] = useState("Placeholder Text");
   const [theme] = useState("xcode");
-  const [mode] = useState("c");
+  const [mode] = useState("c_cpp");
   const [fontSize] = useState(12);
   const [submissionResult, setSubmissionResult] = useState("");
   const [showPrintMargin] = useState(true);
@@ -111,7 +111,7 @@ const App = () => {
   };
 
   const showCode = () => {
-    fetch("http://localhost:8080", {
+    fetch("https://infinite-scrubland-82497.herokuapp.com/evaluate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
