@@ -15,7 +15,7 @@ import "ace-builds/src-min-noconflict/ext-language_tools";
 import Button from "@material-ui/core/Button";
 import Popup from "./Popup";
 
-const languages = ["c_cpp"];
+const languages = ["c"];
 
 const themes = [
   "monokai",
@@ -37,12 +37,10 @@ languages.forEach((lang) => {
 
 themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 
-const defaultValue = `#include <iostream>
-
-using namespace std;
+const defaultValue = `#include <stdio.h>
 
 int main() {
-  cout << "Hello, world!" << endl;
+  printf("Hello, world!");
   return 0;
 }`;
 
@@ -101,7 +99,7 @@ const App = () => {
   const [value, setValue] = useState(defaultValue);
   const [placeholder] = useState("Placeholder Text");
   const [theme] = useState("xcode");
-  const [mode] = useState("c_cpp");
+  const [mode] = useState("c");
   const [fontSize] = useState(12);
   const [submissionResult, setSubmissionResult] = useState("");
   const [showPrintMargin] = useState(true);
