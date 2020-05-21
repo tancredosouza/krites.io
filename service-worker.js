@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/krites_io/precache-manifest.5edb57796a9bfbec0d3f1cae9972a620.js"
+  "/krites_io/precache-manifest.7d90a75f4e46fd455959cb0f7aab18e2.js"
 );
 
 self.addEventListener('message', (event) => {
