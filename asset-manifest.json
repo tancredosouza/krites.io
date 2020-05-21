@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/krites_io/static/css/main.66ecf4d4.chunk.css",
-    "main.js": "/krites_io/static/js/main.c4c8bf3c.chunk.js",
-    "main.js.map": "/krites_io/static/js/main.c4c8bf3c.chunk.js.map",
+    "main.js": "/krites_io/static/js/main.eef94585.chunk.js",
+    "main.js.map": "/krites_io/static/js/main.eef94585.chunk.js.map",
     "runtime-main.js": "/krites_io/static/js/runtime-main.aa0584b7.js",
     "runtime-main.js.map": "/krites_io/static/js/runtime-main.aa0584b7.js.map",
     "static/js/2.6be8b9b1.chunk.js": "/krites_io/static/js/2.6be8b9b1.chunk.js",
     "static/js/2.6be8b9b1.chunk.js.map": "/krites_io/static/js/2.6be8b9b1.chunk.js.map",
     "index.html": "/krites_io/index.html",
-    "precache-manifest.8674c916e818ba1dfc90b5e4e5e61711.js": "/krites_io/precache-manifest.8674c916e818ba1dfc90b5e4e5e61711.js",
+    "precache-manifest.3d5e4043aa7e15fdcab30da39d9922f4.js": "/krites_io/precache-manifest.3d5e4043aa7e15fdcab30da39d9922f4.js",
     "service-worker.js": "/krites_io/service-worker.js",
     "static/css/main.66ecf4d4.chunk.css.map": "/krites_io/static/css/main.66ecf4d4.chunk.css.map",
     "static/js/2.6be8b9b1.chunk.js.LICENSE.txt": "/krites_io/static/js/2.6be8b9b1.chunk.js.LICENSE.txt",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.aa0584b7.js",
     "static/js/2.6be8b9b1.chunk.js",
     "static/css/main.66ecf4d4.chunk.css",
-    "static/js/main.c4c8bf3c.chunk.js"
+    "static/js/main.eef94585.chunk.js"
   ]
 }
