@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6b496413aa06136a8d594f3acf6c9648",
+    "revision": "e5c5c5399dfb20e541cb0f5c473e079b",
     "url": "/krites_io/index.html"
   },
   {
-    "revision": "5f22995f520e0cdd5095",
+    "revision": "b8fea763877f9a5e3569",
     "url": "/krites_io/static/css/main.66ecf4d4.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/krites_io/static/js/2.6be8b9b1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5f22995f520e0cdd5095",
-    "url": "/krites_io/static/js/main.777e5a2f.chunk.js"
+    "revision": "b8fea763877f9a5e3569",
+    "url": "/krites_io/static/js/main.862d8771.chunk.js"
   },
   {
     "revision": "de9015bfb53b528d8925",
