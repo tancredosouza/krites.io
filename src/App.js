@@ -37,10 +37,12 @@ languages.forEach((lang) => {
 
 themes.forEach((theme) => require(`ace-builds/src-noconflict/theme-${theme}`));
 
-const defaultValue = `#include <stdio.h>
+const defaultValue = `#include <iostream>
+
+using namespace std;
 
 int main() {
-  printf("Hello, world!");
+  cout << "Hello, world!" << endl;
   return 0;
 }`;
 
@@ -111,7 +113,7 @@ const App = () => {
   };
 
   const showCode = () => {
-    fetch("https://infinite-scrubland-82497.herokuapp.com/evaluate", {
+    fetch("https://pure-beyond-09404.herokuapp.com/evaluate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
