@@ -113,7 +113,7 @@ const App = () => {
   };
 
   const showCode = () => {
-    fetch("https://pure-beyond-09404.herokuapp.com/evaluate", {
+    fetch("http://localhost:8080/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
