@@ -113,7 +113,7 @@ const App = () => {
   };
 
   const showCode = () => {
-    fetch("http://localhost:8080/", {
+    fetch("http://localhost:5000/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -121,7 +121,7 @@ const App = () => {
         "Access-Control-Allow-Headers": "*",
         "Access-Control-Allow-Origin": "*",
       },
-      body: value,
+      body: JSON.stringify({ submitted_code: value }),
     })
       .then((response) => response.text())
       .then((data) => {
